@@ -1,0 +1,130 @@
+﻿@model VM.Employee.Insert.ViewModel
+
+@{
+    ViewBag.Title = "Новый сотрудник";
+}
+
+<section>
+    <form method="post" asp-action="Create" class="card">
+        <div class="card-body">
+            
+            <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+
+            <h4 class="w-100 text-center mb-3">Новый сотрудник</h4>
+            
+            <div class="m-1">
+                <div class="input-group input-group-sm mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Фамилия</span>
+                    </div>
+                    <input class="form-control form-control-sm" placeholder="Введите фамилию" asp-for="LastName">
+                </div>
+                <div class="input-group input-group-sm mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Имя</span>
+                    </div>
+                    <input class="form-control form-control-sm" placeholder="Введите имя" asp-for="FirstName">
+                </div>
+                <div class="input-group input-group-sm mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Отчество</span>
+                    </div>
+                    <input class="form-control form-control-sm" placeholder="Введите отчество" asp-for="Patronymic">
+                </div>
+                <div class="d-flex flex-wrap justify-content-between">
+                    <div class="input-group input-group-sm mb-2" style="max-width: 300px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Дата рождения</span>
+                        </div>
+                        <input type="date" class="form-control form-control-sm" placeholder="Введите дата рождения" asp-for="BirthDate" value="@DateTime.Today">
+                    </div>
+                    <div class="input-group input-group-sm mb-2" style="max-width: 300px;">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text">Пол</label>
+                        </div>
+                        <select class="custom-select custom-select-sm" asp-for="Gender">
+                            <option selected>Выберите пол</option>
+                            <option value="@R.Employee.Genders.Male">Мужской</option>
+                            <option value="@R.Employee.Genders.Female">Женский</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap w-100">
+                <div class="flex-grow-1 m-1">
+                    <h6 class="mb-3">Паспортные данные</h6>
+                    <div class="input-group input-group-sm mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Серия</span>
+                        </div>
+                        <input class="form-control form-control-sm" placeholder="Введите серию паспорта" asp-for="PassportSeries">
+                    </div>
+                    <div class="input-group input-group-sm mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Номер</span>
+                        </div>
+                        <input class="form-control form-control-sm" placeholder="Введите номер паспорта" asp-for="PassportNumber">
+                    </div>
+                    <div class="input-group input-group-sm mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Адрес регистрации</span>
+                        </div>
+                        <input class="form-control form-control-sm" placeholder="Введите адрес регистрации" asp-for="PassportRegistrationAddress">
+                    </div>
+                    <div class="input-group input-group-sm mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Даты выдачи</span>
+                        </div>
+                        <input type="date" class="form-control form-control-sm" placeholder="Введите дату выдачи паспорта" asp-for="PassportReleaseDate" value="@DateTime.Today">
+                    </div>
+                </div>
+                <div class="flex-grow-1 m-1">
+                    <h6 class="mb-3">Патент</h6>
+                    <div class="input-group input-group-sm mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Серия</span>
+                        </div>
+                        <input class="form-control form-control-sm" placeholder="Введите серию патента" asp-for="PatentSeries">
+                    </div>
+                    <div class="input-group input-group-sm mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Номер</span>
+                        </div>
+                        <input class="form-control form-control-sm" placeholder="Введите номер патента" asp-for="PassportNumber">
+                    </div>
+
+                    <h6 class="mb-3">Миграционная карта</h6>
+                    <div class="input-group input-group-sm mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Серия</span>
+                        </div>
+                        <input class="form-control form-control-sm" placeholder="Введите серию карты" asp-for="MigrationCardSeries">
+                    </div>
+                    <div class="input-group input-group-sm mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Номер</span>
+                        </div>
+                        <input class="form-control form-control-sm" placeholder="Введите номер карты" asp-for="MigrationCardNumber">
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-1">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Временная регистрация</span>
+                    </div>
+                    <textarea class="form-control form-control-sm" asp-for="TemporaryRegistrationAddress" placeholder="Введите адрес временной регистрации"></textarea>
+                </div>
+            </div>
+
+            <button class="btn btn-danger btn-sm m-1 mt-3" type="submit">Добавить сотрудника</button>
+        </div>
+    </form>
+</section>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

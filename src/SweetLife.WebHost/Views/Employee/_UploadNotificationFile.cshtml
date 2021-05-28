@@ -1,0 +1,13 @@
+﻿@model VM.Employee.UploadNotificationFile.ViewModel
+
+<form method="post" enctype="multipart/form-data" asp-action="UploadNotificationFile">
+    
+    <input type="hidden" asp-for="EmployeeId">
+
+    <div class="custom-file mb-2">
+        <input type="file" class="custom-file-input" asp-for="File">
+        <label class="custom-file-label" asp-for="File">Выберите файл уведомления</label>
+    </div>
+
+    <button class="btn btn-danger" type="submit">Загрузить</button>
+</form>

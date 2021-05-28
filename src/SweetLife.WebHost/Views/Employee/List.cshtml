@@ -1,0 +1,96 @@
+﻿@model VM.Employee.List.ViewModel
+
+@{
+    ViewBag.Title = "Список сотрудников";
+
+    var number = 1;
+}
+
+<section>
+    <div class="d-flex flex-row flex-wrap w-100 mb-4">
+        <a class="btn btn-danger btn-sm m-1 d-flex align-items-center" asp-action="Create"><img src="~/icons/add-user.png" class="mr-2">Добавить нового сотрудника</a>
+
+        @if (Model.Employees.Count > 0 || !string.IsNullOrEmpty(Model.SearchString))
+        {
+            <form class="m-1 w-auto flex-grow-1" method="get" asp-action="List">
+                <div class="input-group input-group-sm" asp-action="Index">
+                    <input type="text" class="form-control form-control-sm" placeholder="Найти сотрудника по ФИО" asp-for="SearchString">
+                    <div class="input-group-append">
+                        <button class="btn btn-sm btn-danger d-flex align-items-center" type="submit"><img src="~/icons/search.png" class="mr-2"> Найти</button>
+                    </div>
+                </div>
+            </form>
+        }
+    </div>
+
+    @if (Model.Employees.Count > 0)
+    {
+        <div class="table-responsive p-1 mb-2">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr class="table-danger">
+                        <th scope="col">#</th>
+                        <th scope="col">Фамилия</th>
+                        <th scope="col">Имя</th>
+                        <th scope="col">Отчество</th>
+                        <th scope="col">Дата рождения</th>
+                        <th scope="col">Миграционная карта</th>
+                        <th scope="col">Патент</th>
+                        <th scope="col" class="w-auto"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var employee in Model.Employees)
+                    {
+                        <tr>
+                            <th scope="row">@(number++)</th>
+                            <td>@employee.LastName</td>
+                            <td>@employee.FirstName</td>
+                            <td>@employee.Patronymic</td>
+                            <td>@employee.BirthDate.ToShortDateString()</td>
+                            <td>
+                                @if (employee.HasMigrationCard)
+                                {
+                                    @($"Серия: {employee.MigrationCardSeries} Номер: {employee.MigrationCardSeries}")
+                                }
+                                else
+                                {
+                                    @: Отсутствует
+                                }
+                            </td>
+                            <td>
+                                @if (employee.HasPatent)
+                                {
+                                    @($"Серия: {employee.PatentSeries} Номер: {employee.PatentSeries}")
+                                }
+                                else
+                                {
+                                    @: Отсутствует
+                                }
+                            </td>
+                            <td class="w-auto d-flex justify-content-center">
+                                <a class="btn btn-danger btn-sm d-flex align-items-center" asp-action="Get" asp-route-id="@employee.Id"><img src="~/icons/view-details.png" class="mr-2">Посмотреть</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    @if (Model.Employees.Count == 0)
+    {
+        <div class="alert alert-warning m-1">
+            <h3>Уупс..</h3>
+            
+            @if (!string.IsNullOrEmpty(Model.SearchString))
+            {
+                <div>По запросу <b>@Model.SearchString</b> сотрудников не найдено</div>
+            }
+            else
+            {
+                <div>В базе нет сотрудников</div>
+            }
+        </div>
+    }
+</section>

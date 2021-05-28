@@ -1,0 +1,20 @@
+﻿@model VM.Employee.UploadLastTaxReceiptFile.ViewModel
+
+<form method="post" enctype="multipart/form-data" asp-action="UploadLastTaxReceiptFile">
+    
+    <input type="hidden" asp-for="EmployeeId">
+
+    <div class="custom-file mb-2">
+        <input type="file" class="custom-file-input" asp-for="File">
+        <label class="custom-file-label" asp-for="File">Выберите файл квитанции</label>
+    </div>
+
+    <div class="input-group input-group mb-2">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Дата оплаты</span>
+        </div>
+        <input type="date" class="form-control form-control" placeholder="Введите дату оплаты квитанции" asp-for="PaidDate">
+    </div>
+
+    <button class="btn btn-danger" type="submit">Загрузить</button>
+</form>

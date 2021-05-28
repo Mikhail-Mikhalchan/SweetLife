@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SweetLife.WebHost.Models;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SweetLife.WebHost.Controllers
 {
@@ -20,7 +16,7 @@ namespace SweetLife.WebHost.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("List", "Employee");
         }
 
         public IActionResult Privacy()

@@ -7,6 +7,8 @@ namespace SweetLife.Logic.Repositories.Mssql
     {
         public static void Configure(IServiceCollection services, IConfiguration configuration)
         {
+            File.ServicesConfigurator.Configure(services, configuration);
+            Employee.ServicesConfigurator.Configure(services, configuration);
         }
     }
 }

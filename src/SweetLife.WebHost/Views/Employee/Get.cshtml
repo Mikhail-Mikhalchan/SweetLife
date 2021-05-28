@@ -1,0 +1,192 @@
+﻿@model VM.Employee.Update.ViewModel
+
+@{
+    ViewBag.Title = "Карточка сотрудника";
+}
+
+<section>
+    <div class="card">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <form id="update-employee-form" method="post" asp-action="Get" asp-route-id="@Model.Id">
+
+                    <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+
+                    <h4 class="w-100 text-center mb-3">
+                        Карточка сотрудника
+                        @if (Model.IsFired)
+                        {
+                            <img class="ml-2" src="~/icons/fired.png" width="24" height="24" title="Данный сотрудник уволен">
+                        }
+                    </h4>
+
+                    <input type="hidden" asp-for="Id">
+                    <input type="hidden" asp-for="NotificationFileId">
+                    <input type="hidden" asp-for="LastTaxReceiptFileId">
+
+                    <div class="m-1">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Фамилия</span>
+                            </div>
+                            <input class="form-control form-control-sm" placeholder="Введите фамилию" asp-for="LastName" disabled="@Model.IsFired">
+                        </div>
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Имя</span>
+                            </div>
+                            <input class="form-control form-control-sm" placeholder="Введите имя" asp-for="FirstName" disabled="@Model.IsFired">
+                        </div>
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Отчество</span>
+                            </div>
+                            <input class="form-control form-control-sm" placeholder="Введите отчество" asp-for="Patronymic" disabled="@Model.IsFired">
+                        </div>
+                        <div class="d-flex flex-wrap justify-content-between">
+                            <div class="input-group input-group-sm mb-2" style="max-width: 300px;">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Дата рождения</span>
+                                </div>
+                                <input type="date" class="form-control form-control-sm" placeholder="Введите дата рождения" asp-for="BirthDate" disabled="@Model.IsFired">
+                            </div>
+                            <div class="input-group input-group-sm mb-2" style="max-width: 300px;">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text">Пол</label>
+                                </div>
+                                <select class="custom-select custom-select-sm" asp-for="Gender" disabled="@Model.IsFired">
+                                    <option selected>Выберите пол</option>
+                                    <option value="@R.Employee.Genders.Male">Мужской</option>
+                                    <option value="@R.Employee.Genders.Female">Женский</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-wrap w-100">
+                        <div class="flex-grow-1 m-1">
+                            <h6 class="mb-3">Паспортные данные</h6>
+                            <div class="input-group input-group-sm mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Серия</span>
+                                </div>
+                                <input class="form-control form-control-sm" placeholder="Введите серию паспорта" asp-for="PassportSeries" disabled="@Model.IsFired">
+                            </div>
+                            <div class="input-group input-group-sm mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Номер</span>
+                                </div>
+                                <input class="form-control form-control-sm" placeholder="Введите номер паспорта" asp-for="PassportNumber" disabled="@Model.IsFired">
+                            </div>
+                            <div class="input-group input-group-sm mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Адрес регистрации</span>
+                                </div>
+                                <input class="form-control form-control-sm" placeholder="Введите адрес регистрации" asp-for="PassportRegistrationAddress" disabled="@Model.IsFired">
+                            </div>
+                            <div class="input-group input-group-sm mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Даты выдачи</span>
+                                </div>
+                                <input type="date" class="form-control form-control-sm" placeholder="Введите дату выдачи паспорта" asp-for="PassportReleaseDate" disabled="@Model.IsFired">
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 m-1">
+                            <h6 class="mb-3">Патент</h6>
+                            <div class="input-group input-group-sm mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Серия</span>
+                                </div>
+                                <input class="form-control form-control-sm" placeholder="Введите серию патента" asp-for="PatentSeries" disabled="@Model.IsFired">
+                            </div>
+                            <div class="input-group input-group-sm mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Номер</span>
+                                </div>
+                                <input class="form-control form-control-sm" placeholder="Введите номер патента" asp-for="PassportNumber" disabled="@Model.IsFired">
+                            </div>
+
+                            <h6 class="mb-3">Миграционная карта</h6>
+                            <div class="input-group input-group-sm mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Серия</span>
+                                </div>
+                                <input class="form-control form-control-sm" placeholder="Введите серию карты" asp-for="MigrationCardSeries" disabled="@Model.IsFired">
+                            </div>
+                            <div class="input-group input-group-sm mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Номер</span>
+                                </div>
+                                <input class="form-control form-control-sm" placeholder="Введите номер карты" asp-for="MigrationCardNumber" disabled="@Model.IsFired">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="m-1">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Временная регистрация</span>
+                            </div>
+                            <textarea class="form-control form-control-sm" asp-for="TemporaryRegistrationAddress" placeholder="Введите адрес временной регистрации" disabled="@Model.IsFired"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </li>
+
+            @if (!Model.IsFired)
+            {
+                <li class="list-group-item">
+                    <h6 class="mb-3">Загрузка уведомления</h6>
+
+                    <partial name="_UploadNotificationFile" model="new VM.Employee.UploadNotificationFile.ViewModel { EmployeeId = Model.Id }" />
+                </li>
+
+                <li class="list-group-item">
+                    <h6 class="mb-3">Загрузка квитанции</h6>
+
+                    <partial name="_UploadLastTaxReceiptFile" model="new VM.Employee.UploadLastTaxReceiptFile.ViewModel { EmployeeId = Model.Id, PaidDate = DateTime.Today }" />
+                </li>
+            }
+
+            @if (Model.NotificationFileId.HasValue || Model.LastTaxReceiptFileId.HasValue)
+            {
+                <li class="list-group-item">
+                    <h6 class="mb-3">Файлы</h6>
+
+                    <div class="d-flex flex-wrap">
+                        @if (Model.NotificationFileId.HasValue)
+                        {
+                            <div class="d-flex align-items-center mr-2">
+                                <a asp-controller="File" asp-action="GetById" asp-route-id="@Model.NotificationFileId" class="mr-1" download><img src="~/icons/files.png"></a>
+                                <span>Уведомление</span>
+                            </div>
+                        }
+
+                        @if (Model.LastTaxReceiptFileId.HasValue)
+                        {
+                            <div class="d-flex align-items-center">
+                                <a asp-controller="File" asp-action="GetById" asp-route-id="@Model.LastTaxReceiptFileId" class="mr-1" download><img src="~/icons/files.png"></a>
+                                <span>Последняя квитанция</span>
+                            </div>
+                        }
+                    </div>
+                </li>
+            }
+
+            @if (!Model.IsFired)
+            {
+                <li class="list-group-item">
+                    <div class="d-flex flex-wrap justify-content-between mt-3">
+                        <button class="btn btn-danger btn-sm m-1" type="submit" form="update-employee-form">Обновить данные сотрудника</button>
+                        <a class="btn btn-sm btn-secondary m-1" asp-action="Fire" asp-route-id="@Model.Id">Уволить сотрудника</a>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</section>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

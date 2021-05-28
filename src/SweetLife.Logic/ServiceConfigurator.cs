@@ -7,9 +7,10 @@ namespace SweetLife.Logic
     {
         public static void Configure(IServiceCollection services, IConfiguration configuration)
         {
-            DataProvider.ServicesConfigurator.Configure(services, configuration);
+            DataProviders.ServicesConfigurator.Configure(services, configuration);
             Repositories.ServicesConfigurator.Configure(services, configuration);
             Services.ServicesConfigurator.Configure(services, configuration);
+            Settings.ServicesConfigurator.Configure(services, configuration);
         }
     }
 }
