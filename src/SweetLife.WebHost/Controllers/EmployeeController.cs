@@ -192,7 +192,8 @@ namespace SweetLife.WebHost.Controllers
                 ContentType = viewModel.File.ContentType,
                 Content = viewModel.File.OpenReadStream(),
                 EmployeeId = viewModel.EmployeeId,
-                Date = viewModel.PaidDate
+                Date = viewModel.PaidDate,
+                PaymentAmount = viewModel.PaymentAmount
             };
 
             await repository.ExecuteAsync(input);

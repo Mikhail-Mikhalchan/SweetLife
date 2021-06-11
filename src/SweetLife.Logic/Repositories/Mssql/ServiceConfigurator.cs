@@ -9,6 +9,7 @@ namespace SweetLife.Logic.Repositories.Mssql
         {
             File.ServicesConfigurator.Configure(services, configuration);
             Employee.ServicesConfigurator.Configure(services, configuration);
+            TaxReceipt.ServicesConfigurator.Configure(services, configuration);
         }
     }
 }

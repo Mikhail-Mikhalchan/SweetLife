@@ -26,16 +26,16 @@
     @if (Model.Employees.Count > 0)
     {
         <div class="table-responsive p-1 mb-2">
-            <table class="table table-hover table-bordered">
+            <table class="table table-sm table-hover table-bordered">
                 <thead>
                     <tr class="table-danger">
-                        <th scope="col">#</th>
-                        <th scope="col">Фамилия</th>
-                        <th scope="col">Имя</th>
-                        <th scope="col">Отчество</th>
-                        <th scope="col">Дата рождения</th>
-                        <th scope="col">Миграционная карта</th>
-                        <th scope="col">Патент</th>
+                        <th scope="col" class="text-center align-middle">#</th>
+                        <th scope="col" class="text-center align-middle">Фамилия</th>
+                        <th scope="col" class="text-center align-middle">Имя</th>
+                        <th scope="col" class="text-center align-middle">Отчество</th>
+                        <th scope="col" class="text-center align-middle">Дата рождения</th>
+                        <th scope="col" class="text-center align-middle">Миграционная карта</th>
+                        <th scope="col" class="text-center align-middle">Патент</th>
                         <th scope="col" class="w-auto"></th>
                     </tr>
                 </thead>
@@ -43,12 +43,12 @@
                     @foreach (var employee in Model.Employees)
                     {
                         <tr>
-                            <th scope="row">@(number++)</th>
-                            <td>@employee.LastName</td>
-                            <td>@employee.FirstName</td>
-                            <td>@employee.Patronymic</td>
-                            <td>@employee.BirthDate.ToShortDateString()</td>
-                            <td>
+                            <th class="text-center align-middle" scope="row">@(number++)</th>
+                            <td class="text-center align-middle">@employee.LastName</td>
+                            <td class="text-center align-middle">@employee.FirstName</td>
+                            <td class="text-center align-middle">@employee.Patronymic</td>
+                            <td class="text-center align-middle">@employee.BirthDate.ToShortDateString()</td>
+                            <td class="text-center align-middle">
                                 @if (employee.HasMigrationCard)
                                 {
                                     @($"Серия: {employee.MigrationCardSeries} Номер: {employee.MigrationCardSeries}")
@@ -58,7 +58,7 @@
                                     @: Отсутствует
                                 }
                             </td>
-                            <td>
+                            <td class="text-center align-middle">
                                 @if (employee.HasPatent)
                                 {
                                     @($"Серия: {employee.PatentSeries} Номер: {employee.PatentSeries}")
@@ -69,7 +69,9 @@
                                 }
                             </td>
                             <td class="w-auto d-flex justify-content-center">
-                                <a class="btn btn-danger btn-sm d-flex align-items-center" asp-action="Get" asp-route-id="@employee.Id"><img src="~/icons/view-details.png" class="mr-2">Посмотреть</a>
+                                <a class="btn btn-danger btn-sm d-flex align-items-center" asp-action="Get" asp-route-id="@employee.Id">
+                                    <img src="~/icons/view-details.png" class="mr-2">Посмотреть
+                                </a>
                             </td>
                         </tr>
                     }

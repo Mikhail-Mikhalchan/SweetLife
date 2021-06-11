@@ -21,4 +21,5 @@ BEGIN
         , [NotificationFileId]
         , [LastTaxReceiptFileId]
     FROM [dbo].[Employee]
+    WHERE [Id] = @Id
 END;

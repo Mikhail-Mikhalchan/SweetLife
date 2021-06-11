@@ -12,5 +12,7 @@ namespace SweetLife.Logic.Repositories.Mssql.Employee.SaveTaxReceipt
         public Stream Content { get; set; }
 
         public string ContentType { get; set; }
+
+        public decimal PaymentAmount { get; set; }
     }
 }

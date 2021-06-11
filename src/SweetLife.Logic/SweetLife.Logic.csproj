@@ -17,10 +17,10 @@
 
   <ItemGroup>
     <None Remove="Repositories\Mssql\Employee\Update\Query.sql" />
+    <None Remove="Repositories\Mssql\TaxReceipt\List\Query.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SweetLife.Abstractions\SweetLife.Abstractions.csproj" />
     <ProjectReference Include="..\SweetLife.Data.Mssql\SweetLife.Data.Mssql.csproj" />
   </ItemGroup>
 

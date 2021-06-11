@@ -21,12 +21,14 @@ BEGIN
         [EmployeeId]
         , [FileId]
         , [Date]
+        , [PaymentAmount]
     )
     VALUES
     (     
         @EmployeeId
         , @LastTaxReceiptFileId
         , @Date
+        , @PaymentAmount
     );
 
     UPDATE [dbo].[Employee]

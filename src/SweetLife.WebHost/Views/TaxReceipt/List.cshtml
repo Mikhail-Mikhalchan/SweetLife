@@ -1,0 +1,50 @@
+﻿@model VM.TaxReceipt.List.ViewModel
+
+@{
+    ViewBag.Title = "Учет";
+
+    var number = 1;
+}
+
+<section>
+    <form method="get" class="d-flex align-items-center mb-2">
+        <span class="m-1 font-weight-bold" style="white-space: nowrap;">В период c</span>
+        <input type="date" asp-for="MinDateTime" class="form-control m-1">
+        <span class="m-1 font-weight-bold">до</span>
+        <input type="date" asp-for="MaxDateTime" class="form-control m-1">
+        <button type="submit" class="btn btn-danger m-1">Сформировать</button>
+    </form>
+
+    @if (Model?.Items?.Any() is true)
+    {
+        <div class="m-1 mb-2" style="white-space: nowrap;">
+            <span class="font-weight-bold">Итоговая сумма:</span> <span>@Model.TotalAmount.ToString("C")</span>
+        </div>
+
+        <div class="table-responsive p-1 mb-2">
+            <table class="table table-sm table-hover table-bordered">
+                <thead>
+                <tr class="table-danger">
+                    <th scope="col" class="text-center align-middle">#</th>
+                    <th scope="col" class="text-center align-middle">ФИО</th>
+                    <th scope="col" class="text-center align-middle">Дата нал. платежа</th>
+                    <th scope="col" class="text-center align-middle">Сумма нал. платежа</th>
+                    <th scope="col" class="text-center align-middle">Квитанция</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var taxReceipt in Model.Items)
+                {
+                    <tr>
+                        <th scope="row" class="text-center align-middle">@(number++)</th>
+                        <td class="text-center align-middle"><a asp-controller="Employee" asp-action="Get" asp-route-id="@taxReceipt.EmployeeId">@taxReceipt.EmployeeName</a></td>
+                        <td class="text-center align-middle">@taxReceipt.Date.ToShortDateString()</td>
+                        <td class="text-center align-middle">@taxReceipt.PaymentAmount.ToString("C")</td>
+                        <td class="text-center align-middle"><a asp-controller="File" asp-action="GetById" asp-route-id="@taxReceipt.FileId" download><img src="~/icons/files.png"></a></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>

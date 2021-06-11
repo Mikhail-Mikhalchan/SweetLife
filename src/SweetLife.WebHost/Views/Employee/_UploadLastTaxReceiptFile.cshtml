@@ -9,12 +9,35 @@
         <label class="custom-file-label" asp-for="File">Выберите файл квитанции</label>
     </div>
 
-    <div class="input-group input-group mb-2">
-        <div class="input-group-prepend">
-            <span class="input-group-text">Дата оплаты</span>
+    <div class="d-flex w-100 mb-2">
+        <div class="input-group input-group w-auto">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Дата оплаты</span>
+            </div>
+            <input type="date" class="form-control form-control" placeholder="Введите дату оплаты квитанции" asp-for="PaidDate">
         </div>
-        <input type="date" class="form-control form-control" placeholder="Введите дату оплаты квитанции" asp-for="PaidDate">
+
+        <div class="input-group input-group ml-2 w-auto">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Сумма нал. платежа</span>
+            </div>
+            <input class="form-control" placeholder="Введите сумму нал. платежа" asp-for="PaymentAmount">
+        </div>
     </div>
 
     <button class="btn btn-danger" type="submit">Загрузить</button>
 </form>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", () => {
+        const input = document.getElementById('@nameof(Model.PaymentAmount)');
+
+        if (input !== null && input !== undefined) {
+            input.value = "";
+
+            input.addEventListener("input", function () {
+                this.value = this.value.toString().replace(',', '.');
+            });
+        }
+    });
+</script>

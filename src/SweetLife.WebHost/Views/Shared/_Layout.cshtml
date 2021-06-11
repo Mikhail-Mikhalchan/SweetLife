@@ -28,7 +28,7 @@
         <main role="main" class="pb-3">
             <nav class="nav nav-pills nav-justified mb-3">
                 <a class="nav-item nav-link m-1 @(Url.Action() == Url.Action("List","Employee") ? "btn btn-danger" : "btn btn-outline-danger")" asp-controller="Employee" asp-action="Index">Главная</a>
-                <a class="nav-item nav-link m-1 @(false ? "btn btn-danger" : "btn btn-outline-danger")" href="#">Учет</a>
+                <a class="nav-item nav-link m-1 @(Url.Action() == Url.Action("List","TaxReceipt") ? "btn btn-danger" : "btn btn-outline-danger")"  asp-controller="TaxReceipt" asp-action="Index">Учет</a>
                 <a class="nav-item nav-link m-1 @(false ? "btn btn-danger" : "btn btn-outline-danger")" href="#">Документы</a>
                 <a class="nav-item nav-link m-1 @(false ? "btn btn-danger" : "btn btn-outline-danger")" href="#">Помощь</a>
             </nav>
